@@ -46,5 +46,6 @@ async def main():
     
     # TODO: รอให้ทุก task เสร็จ
     # hint: ใช้ await หรือ asyncio.gather
+    pass
 
 asyncio.run(main())
