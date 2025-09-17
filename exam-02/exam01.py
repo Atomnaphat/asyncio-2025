@@ -16,6 +16,8 @@
 import asyncio
 from typing import List
 
+from assignment09.taskgroup02 import task
+
 # ฟังก์ชันตรวจสอบจำนวนเฉพาะ
 def is_prime(num: int) -> bool:
     if num < 2:
@@ -34,7 +36,9 @@ async def primes_up_to(n: int) -> List[int]:
 async def main():
     ns = [10, 20, 30]  # ตัวอย่างหลายค่า
     tasks = []
-    
+    tasks = [asyncio.create_task(primes_up_to(i)) for i in ns]
+    done,pending = await asyncio.wait(tasks, timeout=10)
+    print([f"Primes <= {ns[i]}: {task.result()}" for i, task in enumerate(done)])
     # TODO: สร้าง asyncio task สำหรับแต่ละ n
     # hint: ใช้ asyncio.create_task(...)
     
