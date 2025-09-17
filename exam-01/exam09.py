@@ -29,10 +29,13 @@ async def work(n):
 
 async def main():
     results = []
-    for i in range(3):
+    for i in range(6):
         results.append(asyncio.create_task(work(i)))
     for r in results:
-        print("Result:", await r)
+        result = [await r for r in results[:3]]
+    print("Results1:", result)
+    for r in results:
+        result = [await r for r in results[3:]]
+    print("Results2:", result)
 
 asyncio.run(main())
-asyncio.run(main())asdasdda
